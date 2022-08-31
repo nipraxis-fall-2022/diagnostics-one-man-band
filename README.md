@@ -1,4 +1,4 @@
-# Diagnostics project
+# DIAGNOSTICS PROJECT
 
 Scripts go in the `scripts` directory.
 
