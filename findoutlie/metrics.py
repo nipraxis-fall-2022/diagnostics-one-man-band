@@ -2,7 +2,10 @@
 """
 
 # Any imports you need
-# +++your code here+++
+import numpy as np
+import nibabel as nib
+import nipraxis as npx
+
 
 
 def dvars(img):
@@ -21,6 +24,15 @@ def dvars(img):
         One-dimensional array with n-1 elements, where n is the number of
         volumes in `img`.
     """
+
+    data = img.get_fdata()
+    voxels_by_time = data.reshape(-1, data.shape[-1])
+    vol_diff = np.diff(voxels_by_time, axis=1)
+    dvals = np.sqrt(np.mean(vol_diff **2, axis=0))
+    
+    return dvals
+
+
     # Hint: remember 'axis='.  For example:
     # In [2]: arr = np.array([[2, 3, 4], [5, 6, 7]])
     # In [3]: np.mean(arr, axis=1)
